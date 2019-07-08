@@ -1,0 +1,41 @@
+###On Ubuntu
+#Install Key
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+
+#Add Binary
+echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
+
+#Update Repo
+sudo apt-get update
+
+#Install Jenkins
+sudo apt-get install jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+
+#Opening Firewall
+sudo ufw allow 8080
+sudo ufw enable
+sudo ufw status
+
+#Login to Jenkins
+http://ip_address_or_domain_name:8080
+
+##########################################################
+##########################################################
+####################################
+##On RHEL
+
+#Install_Java
+sudo yum -y install java-11-openjdk-devel
+
+#Setup Repo
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum -y install wget
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+
+#Install Jenkins
+sudo yum -y install jenkins
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+
